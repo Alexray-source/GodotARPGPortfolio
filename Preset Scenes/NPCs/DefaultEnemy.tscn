@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://bde302mhub426"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/BasicEnemy.gd" id="1_8wwtr"]
+[ext_resource type="Script" path="res://Scripts/Components/Health.gd" id="1_gn2qj"]
+[ext_resource type="Script" path="res://Scripts/Components/WalkTo.gd" id="2_ni5k3"]
+[ext_resource type="Script" path="res://Scripts/Components/VelocityController.gd" id="2_r4amm"]
+[ext_resource type="Script" path="res://Scripts/Components/ScanComponent.gd" id="3_m6pxw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b5xbb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iqu1t"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c0die"]
+radius = 5.0
+
+[node name="DefaultEnemy" type="Node3D" node_paths=PackedStringArray("SCAN_COMPONENT", "WALKTO_COMPONENT")]
+script = ExtResource("1_8wwtr")
+SCAN_COMPONENT = NodePath("VelocityController/ScanComponent")
+WALKTO_COMPONENT = NodePath("WalkToComponent")
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("1_gn2qj")
+
+[node name="WalkToComponent" type="Node3D" parent="." node_paths=PackedStringArray("VEL_CONTROLLER")]
+script = ExtResource("2_ni5k3")
+VEL_CONTROLLER = NodePath("../VelocityController")
+
+[node name="VelocityController" type="CharacterBody3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_r4amm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VelocityController"]
+shape = SubResource("CapsuleShape3D_b5xbb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VelocityController"]
+mesh = SubResource("CapsuleMesh_iqu1t")
+
+[node name="ScanComponent" type="Area3D" parent="VelocityController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("3_m6pxw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VelocityController/ScanComponent"]
+shape = SubResource("SphereShape3D_c0die")

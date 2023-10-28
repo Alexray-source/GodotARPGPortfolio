@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2whfqgg5i6i0"]
+
+[ext_resource type="PackedScene" uid="uid://bw7eenhpg3y66" path="res://Assets/Blender Meshes/PlaceholderCharacter.blend" id="1_184hi"]
+
+[node name="PlaceholderCharacter" instance=ExtResource("1_184hi")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(0, 1.30678, 0)
+bones/1/rotation = Quaternion(0.0751724, 0, 0, 0.997171)
+bones/2/rotation = Quaternion(0.131657, 0, 0, 0.991295)
+bones/3/position = Vector3(-0.417844, 0.736483, 4.64068e-08)
+bones/3/rotation = Quaternion(-0.691181, 0.357554, 0.562123, 0.280074)
+bones/4/position = Vector3(0.417844, 0.736483, 3.968e-08)
+bones/4/rotation = Quaternion(-0.528, -0.406128, 0.674592, -0.318122)
+bones/5/position = Vector3(-0.239418, 0.170146, 0.521055)
+bones/5/rotation = Quaternion(-0.732317, -0.110981, 0.666246, 0.0866663)
+bones/6/position = Vector3(0.166262, 0.517556, 0.464936)
+bones/6/rotation = Quaternion(-0.603147, 0.0782292, 0.787808, -0.0972188)
