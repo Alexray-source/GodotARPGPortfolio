@@ -5,10 +5,13 @@ class_name HealthComponent
 var Health := MAX_HEALTH
 
 func TakeDamage(dmg_amount):
-	pass
+	Health -= dmg_amount
+	print("ATTACKED!!!")
+	if Health <= 0:
+		Die()
 
 func Die():
-	pass
+	get_parent_node_3d().queue_free()
 
 func Heal(heal_amount):
 	pass

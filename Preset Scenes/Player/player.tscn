@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dwx5xco1rkykb"]
+[gd_scene load_steps=23 format=3 uid="uid://dwx5xco1rkykb"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Health.gd" id="1_a4iwt"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerCharacter.gd" id="1_iurgo"]
@@ -6,8 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/Components/InputHandler.gd" id="2_ec56g"]
 [ext_resource type="Script" path="res://Scripts/Components/VelocityController.gd" id="3_ywu6p"]
 [ext_resource type="Script" path="res://Scripts/Components/SmoothPosition.gd" id="4_uqnl7"]
-[ext_resource type="Script" path="res://Scripts/Components/DirectionRotation.gd" id="5_uia52"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://oli4sbdvh3xg" path="res://Preset Scenes/NPCs/AnimationTreeRoots/DefaultAnimationTree.tres" id="5_6soo0"]
 [ext_resource type="Script" path="res://Scripts/Components/AnimatorComponent.gd" id="6_kj41c"]
+[ext_resource type="PackedScene" uid="uid://c7ga10mfmg75d" path="res://Preset Scenes/Components/attack_area_component.tscn" id="8_r6x5j"]
+[ext_resource type="Script" path="res://Scripts/Components/EntityHitbox.gd" id="9_efyxa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qtjjs"]
 
@@ -473,90 +475,19 @@ _data = {
 "Walk": SubResource("Animation_v3bil")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2qdr2"]
-animation = &"Fall"
+[sub_resource type="BoxShape3D" id="BoxShape3D_646fo"]
+size = Vector3(1, 2.14545, 0.911028)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4j1mt"]
-animation = &"Idle"
+[sub_resource type="BoxShape3D" id="BoxShape3D_m72pn"]
+size = Vector3(1.79415, 2.2284, 1.28276)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jyshk"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sn0ak"]
-animation = &"Sprint"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_eex5c"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_4j1mt")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_jyshk")
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_sn0ak")
-blend_point_2/pos = 2.0
-min_space = 0.0
-max_space = 2.0
-sync = true
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p6wnb"]
-animation = &"Jump"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tch7r"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7u3wj"]
-xfade_time = 0.05
-advance_mode = 2
-advance_condition = &"IsJumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_80cq7"]
-xfade_time = 0.5
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="Curve" id="Curve_hihm1"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3lsil"]
-xfade_time = 0.1
-xfade_curve = SubResource("Curve_hihm1")
-advance_mode = 2
-advance_condition = &"IsGrounded"
-
-[sub_resource type="Curve" id="Curve_mrrg2"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.10204, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r151w"]
-xfade_time = 0.1
-xfade_curve = SubResource("Curve_mrrg2")
-advance_mode = 2
-advance_condition = &"IsFalling"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d2r2c"]
-states/Fall/node = SubResource("AnimationNodeAnimation_2qdr2")
-states/Fall/position = Vector2(399, 230)
-states/GroundMovement/node = SubResource("AnimationNodeBlendSpace1D_eex5c")
-states/GroundMovement/position = Vector2(308, 100)
-states/Jump/node = SubResource("AnimationNodeAnimation_p6wnb")
-states/Jump/position = Vector2(502, 100)
-states/Start/position = Vector2(137, 100)
-transitions = ["Start", "GroundMovement", SubResource("AnimationNodeStateMachineTransition_tch7r"), "GroundMovement", "Jump", SubResource("AnimationNodeStateMachineTransition_7u3wj"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_80cq7"), "Fall", "GroundMovement", SubResource("AnimationNodeStateMachineTransition_3lsil"), "GroundMovement", "Fall", SubResource("AnimationNodeStateMachineTransition_r151w")]
-graph_offset = Vector2(-27, 37)
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_p6210"]
-graph_offset = Vector2(-288.389, 81.3849)
-nodes/DefaultMovement/node = SubResource("AnimationNodeStateMachine_d2r2c")
-nodes/DefaultMovement/position = Vector2(20, 140)
-nodes/output/position = Vector2(500, 140)
-node_connections = [&"output", 0, &"DefaultMovement"]
-
-[node name="Player" type="Node3D" node_paths=PackedStringArray("CAMERA", "INPUT_HANDLER", "VEL_CONTROLLER", "ROTATE_COMPONENT", "DIRECTION_ROT_COMPONENT")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("CAMERA", "INPUT_HANDLER", "VEL_CONTROLLER", "ROTATE_COMPONENT", "ATTACKAREA_COMPONENT")]
 script = ExtResource("1_iurgo")
 CAMERA = NodePath("SpringArm3D/Camera3D")
 INPUT_HANDLER = NodePath("InputHandlerComponent")
 VEL_CONTROLLER = NodePath("VelocityController")
 ROTATE_COMPONENT = NodePath("SpringArm3D/RotateComponent")
-DIRECTION_ROT_COMPONENT = NodePath("VelocityController/Armature")
+ATTACKAREA_COMPONENT = NodePath("VelocityController/AttackAreaComponent")
 
 [node name="InputHandlerComponent" type="Node3D" parent="."]
 script = ExtResource("2_ec56g")
@@ -566,6 +497,7 @@ script = ExtResource("1_a4iwt")
 
 [node name="VelocityController" type="CharacterBody3D" parent="." node_paths=PackedStringArray("ANIMATOR_COMPONENT") groups=["Player", "Targetable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
 script = ExtResource("3_ywu6p")
 ANIMATOR_COMPONENT = NodePath("AnimatorComponent")
 JUMP_VELOCITY = 9.0
@@ -574,10 +506,8 @@ GRAVITY_SCALE = 2.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VelocityController"]
 shape = SubResource("CapsuleShape3D_qtjjs")
 
-[node name="Armature" type="Node3D" parent="VelocityController" node_paths=PackedStringArray("TARGET_NODE")]
+[node name="Armature" type="Node3D" parent="VelocityController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-script = ExtResource("5_uia52")
-TARGET_NODE = NodePath(".")
 
 [node name="Skeleton3D" type="Skeleton3D" parent="VelocityController/Armature"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -592,43 +522,43 @@ bones/1/name = "Torso"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.710693, 0)
 bones/1/enabled = true
-bones/1/position = Vector3(0, 1.30678, 0)
-bones/1/rotation = Quaternion(0.0755738, 0, 0, 0.99714)
+bones/1/position = Vector3(0, 0.700669, 0)
+bones/1/rotation = Quaternion(0.00457556, -0.0499749, 0.000154517, 0.99874)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Head"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759141, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.759141, 0)
-bones/2/rotation = Quaternion(0.131839, 0, 0, 0.991271)
+bones/2/rotation = Quaternion(-0.00311588, 0.0390542, 0.000660768, 0.999232)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Arm_R"
 bones/3/parent = 1
 bones/3/rest = Transform3D(0, -8.74228e-08, -1, 8.74228e-08, -1, 8.74228e-08, -1, -8.74228e-08, 0, -0.417844, 0.736484, 2.81423e-08)
 bones/3/enabled = true
-bones/3/position = Vector3(-0.416323, 0.736483, 3.98793e-08)
-bones/3/rotation = Quaternion(-0.690749, 0.358289, 0.561649, 0.28115)
+bones/3/position = Vector3(-0.427231, 0.719765, 0.014079)
+bones/3/rotation = Quaternion(-0.725652, -0.043303, 0.680905, 0.0890085)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Arm_L"
 bones/4/parent = 1
 bones/4/rest = Transform3D(0, -8.74228e-08, -1, 8.74228e-08, -1, 8.74228e-08, -1, -8.74228e-08, 0, 0.417844, 0.736484, 2.81423e-08)
 bones/4/enabled = true
-bones/4/position = Vector3(0.417012, 0.736483, 3.31525e-08)
-bones/4/rotation = Quaternion(-0.527293, -0.406663, 0.674429, -0.318956)
+bones/4/position = Vector3(0.417844, 0.743099, 2.63928e-08)
+bones/4/rotation = Quaternion(-0.740991, -0.00327414, 0.667216, -0.0757887)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Leg_R"
 bones/5/parent = 1
 bones/5/rest = Transform3D(0, -9.02627e-08, -1, 9.02627e-08, -1, 9.02627e-08, -1, -9.02627e-08, 0, -0.166262, -0.0538297, 2.81423e-08)
 bones/5/enabled = true
-bones/5/position = Vector3(-0.239418, 0.170237, 0.521442)
-bones/5/rotation = Quaternion(-0.732467, -0.109756, 0.666307, 0.086493)
+bones/5/position = Vector3(-0.166503, -0.0486986, 0.0761141)
+bones/5/rotation = Quaternion(-0.778977, 0.034292, 0.625554, -0.0264892)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Leg_L"
 bones/6/parent = 1
 bones/6/rest = Transform3D(0, -9.02627e-08, -1, 9.02627e-08, -1, 9.02627e-08, -1, -9.02627e-08, 0, 0.166262, -0.0538297, 2.81423e-08)
 bones/6/enabled = true
-bones/6/position = Vector3(0.166262, 0.517465, 0.464548)
-bones/6/rotation = Quaternion(-0.603097, 0.07883, 0.787627, -0.0985109)
+bones/6/position = Vector3(0.176075, -0.0472618, -0.0943251)
+bones/6/rotation = Quaternion(-0.652167, -0.0740096, 0.750191, 0.0800898)
 bones/6/scale = Vector3(1, 1, 1)
 
 [node name="Cube" type="MeshInstance3D" parent="VelocityController/Armature/Skeleton3D"]
@@ -641,7 +571,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="VelocityController"]
-tree_root = SubResource("AnimationNodeBlendTree_p6210")
+tree_root = ExtResource("5_6soo0")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/DefaultMovement/conditions/IsFalling = false
@@ -653,6 +583,24 @@ parameters/DefaultMovement/GroundMovement/blend_position = 0.279214
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 script = ExtResource("6_kj41c")
 ANIMATION_TREE = NodePath("../AnimationTree")
+
+[node name="EntityHitboxComponent" type="Area3D" parent="VelocityController" node_paths=PackedStringArray("HEALTH_COMPONENT")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 2
+script = ExtResource("9_efyxa")
+HEALTH_COMPONENT = NodePath("../../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VelocityController/EntityHitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10419, 0)
+shape = SubResource("BoxShape3D_646fo")
+
+[node name="AttackAreaComponent" parent="VelocityController" node_paths=PackedStringArray("AttackPivot") instance=ExtResource("8_r6x5j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.88776)
+AttackPivot = NodePath("../Armature")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VelocityController/AttackAreaComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016837, 0, 0.38222)
+shape = SubResource("BoxShape3D_m72pn")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0
@@ -669,3 +617,5 @@ script = ExtResource("1_xmse6")
 TARGET_NODE = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+
+[editable path="VelocityController/AttackAreaComponent"]

@@ -28,7 +28,7 @@ func on_body_exit(body : Node3D):
 		nearby_bodies.erase(body)
 
 func on_scan():
-	print(nearby_bodies)
+#	print(nearby_bodies)
 	var prev_target = closest_target
 	if nearby_bodies.find(closest_target) == -1:
 		closest_target = null
@@ -41,5 +41,5 @@ func on_scan():
 			closest_target = body
 	
 	if closest_target != prev_target:
-		print("TARGET CHANGED!!")
+#		print("TARGET CHANGED!!")
 		target_change.emit(closest_target)

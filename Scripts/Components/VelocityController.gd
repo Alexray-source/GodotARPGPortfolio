@@ -13,11 +13,17 @@ class_name VelocityControllerComponent
 
 var currentDirection : Vector3
 var targetDirection : Vector3
+var cachedbaseSpeed = MOVE_SPEED
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func UpdateVelocity(newDirection):
 	targetDirection = newDirection
+
+func RotateToDirection(Direction:Vector3):
+	Direction = Vector3(Direction.x, 0, Direction.z)
+	if global_position != (global_position + Direction):
+		look_at(global_position + Direction)
 
 func jump():
 	if is_on_floor():
@@ -46,11 +52,13 @@ func _physics_process(delta):
 	var direction = lerp(currentDirection, targetDirection, TURN_SPEED * delta)
 	currentDirection = direction
 	
+	RotateToDirection(currentDirection)
+	
 	var outputVelocity = Vector3(currentDirection.x * MOVE_SPEED, currentDirection.y, currentDirection.z * MOVE_SPEED)
 	
 	velocity = Vector3(outputVelocity.x, velocity.y , outputVelocity.z)
 	
 	if ANIMATOR_COMPONENT:
-		ANIMATOR_COMPONENT.setGroundSpeed(MOVE_SPEED / velocity.length())
+		ANIMATOR_COMPONENT.setGroundSpeed(velocity.length() / cachedbaseSpeed)
 	
 	move_and_slide()

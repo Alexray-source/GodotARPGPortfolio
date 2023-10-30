@@ -7,6 +7,8 @@ signal onMovementInput(InputDirection:Vector2)
 signal onJumpInput()
 signal onSprintInput()
 
+signal onSimpleAttack(dmgAmount:int)
+
 signal onCameraInput(InputDirection:Vector2)
 
 func _ready():
@@ -27,6 +29,9 @@ func _input(event):
 		onSprintInput.emit(true)
 	elif event.is_action_released("sprint"):
 		onSprintInput.emit(false)
+		
+	if event.is_action_pressed("primary_attack"):
+		onSimpleAttack.emit(10)
 
 func _unhandled_input(event):
 	if IGNORE_INPUT:

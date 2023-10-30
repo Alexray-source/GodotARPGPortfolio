@@ -5,7 +5,7 @@ extends Node3D
 @export var INPUT_HANDLER : InputHandlerComponent
 @export var VEL_CONTROLLER : VelocityControllerComponent
 @export var ROTATE_COMPONENT : RotateComponent
-@export var DIRECTION_ROT_COMPONENT : DirectionRotationComponent
+@export var ATTACKAREA_COMPONENT : AttackAreaComponent
 @export var SPRINT_SPEED_MULTIPLIER := 2.0
 
 var is_sprinting := false
@@ -19,9 +19,13 @@ func _ready():
 	INPUT_HANDLER.connect("onSprintInput", sprintInputChanged)
 	
 	INPUT_HANDLER.connect("onCameraInput", rotateCamera)
+	INPUT_HANDLER.connect("onSimpleAttack", meleeAttack)
 
 func playerJumpAttempt():
 	VEL_CONTROLLER.jump()
+
+func meleeAttack(dmg:int):
+	ATTACKAREA_COMPONENT.initiateAttack(Vector3(4,4,4), 10)
 
 func rotateCamera(inputDir:Vector2):
 	ROTATE_COMPONENT.RotateXY_To(inputDir)
@@ -42,4 +46,3 @@ func movementInputChanged(inputDir:Vector2):
 		VEL_CONTROLLER.MOVE_SPEED = cached_base_speed
 	
 	VEL_CONTROLLER.targetDirection = targetdirection
-	DIRECTION_ROT_COMPONENT.RotateToDirection(targetdirection)
