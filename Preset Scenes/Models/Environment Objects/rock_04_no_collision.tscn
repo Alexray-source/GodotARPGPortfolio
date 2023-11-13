@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://drg6dw1erwi6x"]
+
+[ext_resource type="PackedScene" uid="uid://vsu3kv3h7o10" path="res://Assets/Blender Meshes/Rock04.blend" id="1_3oqro"]
+
+[node name="Rock04" instance=ExtResource("1_3oqro")]

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://2j6iwx6j5wtj"]
+
+[ext_resource type="Shader" uid="uid://cid7ip5pboxtg" path="res://VisualShaders/TerrainBlendingShader.tres" id="1_r8nfi"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_r8nfi")
+shader_parameter/UVScale = Vector2(75, 75)

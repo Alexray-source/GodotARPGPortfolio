@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2d5w52cm4i4t"]
+
+[ext_resource type="PackedScene" uid="uid://csdlcplsbeqdk" path="res://Assets/Blender Meshes/LandscapeLayer1.blend" id="1_xcww0"]
+[ext_resource type="Material" uid="uid://ddkme3w5frulh" path="res://Materials/Terrain/TerrainBlendingSmall.tres" id="2_5epcr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h2axq"]
+points = PackedVector3Array(2.67537, 2.33382, 0.715575, -0.98487, 1.91885, -3.36756, -2.92861, 2.14492, 0.430191, 3.31195, -0.0564246, 0.619999, -2.21651, -0.0564246, 1.40951, 2.57691, 2.23166, -2.1066, 2.27964, 0.0227345, -2.11742, -2.55515, -0.0564246, -1.8617, -2.44984, 2.33726, -1.89752, -1.01464, 1.61333, 1.61546, 3.80106, 2.14757, -0.529027, 0.482771, 2.13105, -3.37311, -1.94262, 2.34583, 1.049, -0.861966, -0.0564246, -3.21545, 3.46017, 2.1414, 0.744043, 3.00444, 0.0291244, -1.48051, -2.78137, -0.0564246, 0.732638, -3.0347, 2.14469, -1.16934, -2.06426, 2.1409, -2.76118, -0.683882, 0.0158766, 1.48747, 0.481966, 2.33249, -3.14538, 0.484103, 0.0137518, -3.08472, 3.53747, -0.0564246, 0.281562, 3.53353, 2.34211, -0.219719, -1.1145, 2.1451, 1.49687, 3.38106, 2.15022, -1.49255, -2.07395, 2.14469, 1.28245, -2.78137, -0.0564246, -1.18483, 2.58335, 2.13002, -2.21543, -0.876717, 2.33602, -3.15228, -2.71477, 2.14493, -2.02269, -3.09372, 2.05265, -0.198329)
+
+[node name="LandscapeLayer1" instance=ExtResource("1_xcww0")]
+
+[node name="Vert" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_5epcr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_h2axq")

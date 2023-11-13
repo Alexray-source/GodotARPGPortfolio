@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b43thxvdx4bb0"]
+
+[ext_resource type="Script" path="res://Scripts/Components/ItemDropComponent.gd" id="1_aym6o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x51wd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1f7f1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lrcpn"]
+radius = 0.962059
+
+[node name="ItemDrop" type="RigidBody3D" node_paths=PackedStringArray("AREA")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+gravity_scale = 2.5
+lock_rotation = true
+linear_damp = 1.0
+script = ExtResource("1_aym6o")
+AREA = NodePath("Area3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_x51wd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_1f7f1")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_lrcpn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

@@ -3,15 +3,20 @@ extends Node3D
 @export var CAMERA:Node3D
 
 @export var INPUT_HANDLER : InputHandlerComponent
+@export var HEALTH_COMPONENT : HealthComponent
 @export var VEL_CONTROLLER : VelocityControllerComponent
 @export var ROTATE_COMPONENT : RotateComponent
 @export var ATTACKAREA_COMPONENT : AttackAreaComponent
+@export var ANIMATOR_COMPONENT : AnimatorComponent
+@export var HUD_COMPONENT: HUDComponent
+
 @export var SPRINT_SPEED_MULTIPLIER := 2.0
 
 var is_sprinting := false
 var cached_base_speed := 1.0
 
-# Called when the node enters the scene tree for the first time.
+var in_Inventory = false
+
 func _ready():
 	cached_base_speed = VEL_CONTROLLER.MOVE_SPEED
 	INPUT_HANDLER.connect("onJumpInput", playerJumpAttempt)
@@ -20,20 +25,34 @@ func _ready():
 	
 	INPUT_HANDLER.connect("onCameraInput", rotateCamera)
 	INPUT_HANDLER.connect("onSimpleAttack", meleeAttack)
+	INPUT_HANDLER.connect("onInventoryInput", toggleInventoryUI)
+	
+	HEALTH_COMPONENT.connect("on_die", Die)
+
+func Die():
+	queue_free()
 
 func playerJumpAttempt():
 	VEL_CONTROLLER.jump()
 
 func meleeAttack(dmg:int):
-	ATTACKAREA_COMPONENT.initiateAttack(Vector3(4,4,4), 10)
+	if in_Inventory:
+		return
+#	ATTACKAREA_COMPONENT.initiateAttack(Vector3(4,4,4), 10)
+	print(ANIMATOR_COMPONENT.attackAnimCd)
+	ANIMATOR_COMPONENT.playAttack()
 
 func rotateCamera(inputDir:Vector2):
+	if in_Inventory:
+		return
 	ROTATE_COMPONENT.RotateXY_To(inputDir)
 
 func sprintInputChanged(isActive:bool):
 	is_sprinting = isActive
 
 func movementInputChanged(inputDir:Vector2):
+	if in_Inventory:
+		return
 	var cameraForwardBasis = CAMERA.global_transform.basis.z
 	var cameraRightBasis = CAMERA.global_transform.basis.x
 	
@@ -46,3 +65,7 @@ func movementInputChanged(inputDir:Vector2):
 		VEL_CONTROLLER.MOVE_SPEED = cached_base_speed
 	
 	VEL_CONTROLLER.targetDirection = targetdirection
+
+func toggleInventoryUI():
+	in_Inventory = not in_Inventory
+	HUD_COMPONENT.toggleInventory()

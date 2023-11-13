@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctearq8xjvskc"]
+
+[ext_resource type="Material" uid="uid://b1i6ki837cqxa" path="res://Materials/Blockout/BasicGridYellow.tres" id="1_g5f6p"]
+[ext_resource type="Material" uid="uid://bgex8oqfljbhj" path="res://Materials/Blockout/BasicGrid.tres" id="1_kck5n"]
+
+[node name="CSGFence" type="CSGCombiner3D"]
+transform = Transform3D(-0.998964, -0.00869181, 0.0446725, -0.0090831, 0.999922, -0.00856362, -0.0445943, -0.00896051, -0.998965, 0, 0, 0)
+material_overlay = ExtResource("1_g5f6p")
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="."]
+transform = Transform3D(0.998757, 0.000301984, 0.0498685, -0.000505778, 0.999994, 0.00407457, -0.0498667, -0.0040947, 0.99875, -0.0969293, 0.361545, -2.02646)
+material_override = ExtResource("1_kck5n")
+use_collision = true
+size = Vector3(0.25, 2, 0.25)
+material = ExtResource("1_kck5n")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="."]
+transform = Transform3D(0.998757, 0.00030199, 0.0498685, -0.000505779, 0.999994, 0.00407458, -0.0498667, -0.0040947, 0.99875, 0.102533, 0.377844, 1.96852)
+material_override = ExtResource("1_kck5n")
+use_collision = true
+size = Vector3(0.25, 2, 0.25)
+material = ExtResource("1_kck5n")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="."]
+transform = Transform3D(0.998757, 0.00030199, 0.0498685, -0.000505779, 0.999994, 0.00407458, -0.0498667, -0.0040947, 0.99875, 0.00281439, 0.369694, -0.0289559)
+material_override = ExtResource("1_kck5n")
+use_collision = true
+size = Vector3(0.25, 0.2, 4)
+material = ExtResource("1_kck5n")
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="."]
+transform = Transform3D(0.998757, 0.000301999, 0.0498688, -0.000505779, 0.999994, 0.00407458, -0.0498667, -0.00409469, 0.998751, 0.00297443, 0.970512, -0.0314349)
+material_override = ExtResource("1_g5f6p")
+use_collision = true
+size = Vector3(0.25, 0.2, 4)
+material = ExtResource("1_kck5n")

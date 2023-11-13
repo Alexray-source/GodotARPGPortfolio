@@ -1,0 +1,95 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=17 format=3 uid="uid://de5uxa4t123to"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1np2j"]
+animation = &"Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2qdr2"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4j1mt"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jyshk"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sn0ak"]
+animation = &"Sprint"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_eex5c"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_4j1mt")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_jyshk")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_sn0ak")
+blend_point_2/pos = 2.0
+min_space = 0.0
+max_space = 2.0
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p6wnb"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tch7r"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7u3wj"]
+xfade_time = 0.05
+advance_mode = 2
+advance_condition = &"IsJumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_80cq7"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_hihm1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3lsil"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_hihm1")
+advance_mode = 2
+advance_condition = &"IsGrounded"
+
+[sub_resource type="Curve" id="Curve_mrrg2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.10204, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r151w"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_mrrg2")
+advance_mode = 2
+advance_condition = &"IsFalling"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d2r2c"]
+states/Fall/node = SubResource("AnimationNodeAnimation_2qdr2")
+states/Fall/position = Vector2(399, 230)
+states/GroundMovement/node = SubResource("AnimationNodeBlendSpace1D_eex5c")
+states/GroundMovement/position = Vector2(308, 100)
+states/Jump/node = SubResource("AnimationNodeAnimation_p6wnb")
+states/Jump/position = Vector2(502, 100)
+states/Start/position = Vector2(137, 100)
+transitions = ["Start", "GroundMovement", SubResource("AnimationNodeStateMachineTransition_tch7r"), "GroundMovement", "Jump", SubResource("AnimationNodeStateMachineTransition_7u3wj"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_80cq7"), "Fall", "GroundMovement", SubResource("AnimationNodeStateMachineTransition_3lsil"), "GroundMovement", "Fall", SubResource("AnimationNodeStateMachineTransition_r151w")]
+graph_offset = Vector2(-108, -24)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_d1rwh"]
+xfade_time = 0.1
+allow_transition_to_self = true
+input_0/name = "Normal"
+input_0/auto_advance = false
+input_0/reset = false
+input_1/name = "Attack"
+input_1/auto_advance = true
+input_1/reset = true
+
+[resource]
+graph_offset = Vector2(-457.014, 74.5397)
+nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_1np2j")
+nodes/AttackAnimation/position = Vector2(-100, 340)
+nodes/DefaultMovement/node = SubResource("AnimationNodeStateMachine_d2r2c")
+nodes/DefaultMovement/position = Vector2(-100, 120)
+nodes/Transition/node = SubResource("AnimationNodeTransition_d1rwh")
+nodes/Transition/position = Vector2(240, 80)
+nodes/output/position = Vector2(520, 100)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"DefaultMovement", &"Transition", 1, &"AttackAnimation"]

@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddhsggvbuhh8u"]
+[gd_scene load_steps=15 format=3 uid="uid://ddhsggvbuhh8u"]
 
 [ext_resource type="PackedScene" uid="uid://bde302mhub426" path="res://Preset Scenes/NPCs/DefaultEnemy.tscn" id="2_t42hs"]
+[ext_resource type="PackedScene" uid="uid://b43thxvdx4bb0" path="res://Preset Scenes/Inventory/ItemDrop.tscn" id="3_dabmh"]
 [ext_resource type="PackedScene" uid="uid://dwx5xco1rkykb" path="res://Preset Scenes/Player/player.tscn" id="3_x20tm"]
+[ext_resource type="Resource" uid="uid://c5p83d1fy10ud" path="res://Assets/Resources/Inventory Items/Test_Item.tres" id="4_52kn8"]
+[ext_resource type="Resource" uid="uid://b8e3mc6enlhik" path="res://Assets/Resources/Inventory Items/Apple.tres" id="4_81cu0"]
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/InventorySlotResource.gd" id="5_3uerl"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ap5iy"]
 size = Vector2(10, 10)
@@ -11,13 +15,32 @@ size = Vector3(10, 1.45519e-11, 10)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7g3u8"]
 
-[sub_resource type="Sky" id="Sky_mr660"]
+[sub_resource type="Sky" id="Sky_fijbe"]
 sky_material = SubResource("ProceduralSkyMaterial_7g3u8")
 
 [sub_resource type="Environment" id="Environment_wf64a"]
 background_mode = 2
 background_energy_multiplier = 2.0
-sky = SubResource("Sky_mr660")
+sky = SubResource("Sky_fijbe")
+ambient_light_source = 3
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 0.96
+
+[sub_resource type="Resource" id="Resource_4o720"]
+script = ExtResource("5_3uerl")
+InventoryItem = ExtResource("4_81cu0")
+slotAmount = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qk53d"]
+albedo_color = Color(0.878431, 0.356863, 0.380392, 1)
+
+[sub_resource type="Resource" id="Resource_3s2pa"]
+script = ExtResource("5_3uerl")
+InventoryItem = ExtResource("4_52kn8")
+slotAmount = 15
 
 [node name="Test_Scene" type="Node3D"]
 
@@ -32,6 +55,7 @@ shape = SubResource("BoxShape3D_r2s5j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.890065, -0.429478, 0.15275, -0.0722298, 0.197984, 0.97754, -0.450074, -0.881108, 0.145197, -4.76837e-07, 5.50774, 2.06413)
+light_angular_distance = 5.81
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -41,13 +65,17 @@ environment = SubResource("Environment_wf64a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0616016, 1.56575, 7.63406)
 
 [node name="DefaultEnemy" parent="." instance=ExtResource("2_t42hs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.72363, 1.89856, -12.825)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94783, 1.89856, -11.2441)
 
-[node name="DefaultEnemy2" parent="." instance=ExtResource("2_t42hs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78686, 0, -10.927)
+[node name="ItemDrop" parent="." instance=ExtResource("3_dabmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6864, 2.19557, 2.4917)
+ItemSlot = SubResource("Resource_4o720")
 
-[node name="DefaultEnemy3" parent="." instance=ExtResource("2_t42hs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78088, 0, -10.163)
+[node name="MeshInstance3D" parent="ItemDrop" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qk53d")
 
-[node name="DefaultEnemy4" parent="." instance=ExtResource("2_t42hs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.38069, 0, -9.16529)
+[node name="ItemDrop2" parent="." instance=ExtResource("3_dabmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3439, 1.80086, 1.47566)
+ItemSlot = SubResource("Resource_3s2pa")
+
+[editable path="ItemDrop"]

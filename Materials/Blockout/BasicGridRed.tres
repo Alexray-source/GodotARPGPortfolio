@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bymt3vafecwpm"]
+
+[ext_resource type="Texture2D" uid="uid://bdfvwu7sq88xm" path="res://Assets/Textures/Grids/BlockoutGridRed.png" id="1_0b51h"]
+
+[resource]
+albedo_texture = ExtResource("1_0b51h")
+albedo_texture_force_srgb = true
+metallic_specular = 0.0
+uv1_triplanar = true

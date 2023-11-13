@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dviim7wk27qxq"]
+
+[ext_resource type="PackedScene" uid="uid://dt06ogl73pryc" path="res://Assets/Blender Meshes/PlaceholderSword.blend" id="1_wwa6l"]
+
+[node name="PlaceholderSword" instance=ExtResource("1_wwa6l")]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemResource" load_steps=3 format=3 uid="uid://c5p83d1fy10ud"]
+
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/InventoryItemResource.gd" id="1_1vffs"]
+[ext_resource type="Texture2D" uid="uid://vydeswxa5bxh" path="res://Assets/Textures/InventoryItemIcons/Sentinels.png" id="1_02nlh"]
+
+[resource]
+script = ExtResource("1_1vffs")
+ItemName = "Test item"
+Description = "Just the default test item, nothing much to see here..."
+TextureIcon = ExtResource("1_02nlh")
+stackable = true

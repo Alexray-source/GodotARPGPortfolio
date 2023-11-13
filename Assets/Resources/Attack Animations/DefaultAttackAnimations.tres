@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AttackAnimationResource" load_steps=2 format=3 uid="uid://cuy1sytwiw0xs"]
+
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/AttackAnimationResource.gd" id="1_pq1yr"]
+
+[resource]
+script = ExtResource("1_pq1yr")
+animations = Array[String](["Attack1", "Attack2", "Attack3"])

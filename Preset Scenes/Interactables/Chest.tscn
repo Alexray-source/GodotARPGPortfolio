@@ -1,0 +1,62 @@
+[gd_scene load_steps=14 format=3 uid="uid://dc0kc8g27x3a"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/Chest.gd" id="1_ciqqv"]
+[ext_resource type="Script" path="res://Scripts/Components/DropInventoryComponent.gd" id="1_i4vdq"]
+[ext_resource type="Script" path="res://Scripts/Components/InventoryComponent.gd" id="2_wy1nl"]
+[ext_resource type="Resource" uid="uid://c5p83d1fy10ud" path="res://Assets/Resources/Inventory Items/Test_Item.tres" id="3_txa76"]
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/InventorySlotResource.gd" id="4_x4fn1"]
+[ext_resource type="Resource" uid="uid://b8e3mc6enlhik" path="res://Assets/Resources/Inventory Items/Apple.tres" id="5_8tmtb"]
+[ext_resource type="PackedScene" uid="uid://dkvybproo4bh0" path="res://Preset Scenes/Components/proximity_interaction.tscn" id="6_4o7rw"]
+
+[sub_resource type="Resource" id="Resource_um8bb"]
+script = ExtResource("4_x4fn1")
+InventoryItem = ExtResource("3_txa76")
+slotAmount = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uie22"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_faki7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ooes2"]
+albedo_color = Color(0.803922, 0.666667, 0.145098, 1)
+emission_enabled = true
+emission = Color(0.964706, 0.792157, 0.352941, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="Resource" id="Resource_4if28"]
+script = ExtResource("4_x4fn1")
+InventoryItem = ExtResource("3_txa76")
+slotAmount = 3
+
+[sub_resource type="Resource" id="Resource_kctrl"]
+script = ExtResource("4_x4fn1")
+InventoryItem = ExtResource("5_8tmtb")
+slotAmount = 5
+
+[node name="Chest" type="Node3D" node_paths=PackedStringArray("PROXIMITY_COMPONENT", "DROPINV_COMPONENT", "INVENTORY_COMPONENT")]
+script = ExtResource("1_ciqqv")
+PROXIMITY_COMPONENT = NodePath("ProximityInteractComponent")
+DROPINV_COMPONENT = NodePath("DropInventoryComponent")
+INVENTORY_COMPONENT = NodePath("InventoryComponent")
+INVENTORY = Array[ExtResource("4_x4fn1")]([SubResource("Resource_um8bb")])
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_uie22")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_faki7")
+surface_material_override/0 = SubResource("StandardMaterial3D_ooes2")
+
+[node name="DropInventoryComponent" type="Node3D" parent="." node_paths=PackedStringArray("INVENTORY_COMPONENT", "DropOrigin")]
+script = ExtResource("1_i4vdq")
+INVENTORY_COMPONENT = NodePath("../InventoryComponent")
+DropOrigin = NodePath("../StaticBody3D")
+
+[node name="InventoryComponent" type="Node3D" parent="."]
+script = ExtResource("2_wy1nl")
+Inventory = Array[ExtResource("4_x4fn1")]([SubResource("Resource_4if28"), SubResource("Resource_kctrl")])
+
+[node name="ProximityInteractComponent" parent="." instance=ExtResource("6_4o7rw")]

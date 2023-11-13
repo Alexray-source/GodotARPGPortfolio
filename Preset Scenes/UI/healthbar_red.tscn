@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqml56qfm166v"]
+
+[ext_resource type="PackedScene" uid="uid://bqwdpm6620r60" path="res://Preset Scenes/UI/Healthbar.tscn" id="1_eih8y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51pq7"]
+bg_color = Color(0.909804, 0.337255, 0.337255, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Healthbar" instance=ExtResource("1_eih8y")]
+theme_override_styles/fill = SubResource("StyleBoxFlat_51pq7")

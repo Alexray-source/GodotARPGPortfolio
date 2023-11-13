@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmy42m5rur6y8"]
+
+[ext_resource type="PackedScene" uid="uid://dj1pyll20q8c3" path="res://Assets/Blender Meshes/Fence.blend" id="1_yd15k"]
+[ext_resource type="Texture2D" uid="uid://dceox75i4bbpu" path="res://Assets/Blender Meshes/textures/Fence/Fence_Color.png" id="2_4sy6q"]
+[ext_resource type="Texture2D" uid="uid://cg8elpykaoufx" path="res://Assets/Blender Meshes/textures/Fence/Fence_Normal.png" id="3_3y0cy"]
+[ext_resource type="Texture2D" uid="uid://dri6t205biw71" path="res://Assets/Blender Meshes/textures/Fence/Fence_Roughness.png" id="3_tgp3s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrjvo"]
+albedo_texture = ExtResource("2_4sy6q")
+metallic_specular = 0.22
+roughness_texture = ExtResource("3_tgp3s")
+normal_enabled = true
+normal_texture = ExtResource("3_3y0cy")
+
+[node name="Fence" instance=ExtResource("1_yd15k")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hrjvo")

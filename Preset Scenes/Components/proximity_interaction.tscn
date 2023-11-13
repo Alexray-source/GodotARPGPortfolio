@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkvybproo4bh0"]
+
+[ext_resource type="Script" path="res://Scripts/Components/ScanComponent.gd" id="1_1hls1"]
+[ext_resource type="Script" path="res://Scripts/Components/ProximityComponent.gd" id="1_6uo8h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u0l74"]
+radius = 3.0
+
+[node name="ProximityInteractComponent" type="Node3D" node_paths=PackedStringArray("SCAN_COMPONENT")]
+script = ExtResource("1_6uo8h")
+SCAN_COMPONENT = NodePath("ScanComponent")
+
+[node name="ScanComponent" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_1hls1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScanComponent"]
+shape = SubResource("SphereShape3D_u0l74")

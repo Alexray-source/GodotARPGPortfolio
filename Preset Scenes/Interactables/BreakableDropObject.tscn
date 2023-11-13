@@ -1,0 +1,64 @@
+[gd_scene load_steps=13 format=3 uid="uid://4ugwd1jjvx5q"]
+
+[ext_resource type="Script" path="res://Scripts/Components/EntityHitbox.gd" id="1_4nlu3"]
+[ext_resource type="Script" path="res://Scripts/Interactables/BreakableDropObject.gd" id="1_km2uj"]
+[ext_resource type="Script" path="res://Scripts/Components/Health.gd" id="2_an8r2"]
+[ext_resource type="Resource" uid="uid://b8e3mc6enlhik" path="res://Assets/Resources/Inventory Items/Apple.tres" id="3_3nklx"]
+[ext_resource type="PackedScene" uid="uid://bqml56qfm166v" path="res://Preset Scenes/UI/healthbar_red.tscn" id="3_uc37s"]
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/InventorySlotResource.gd" id="4_03a3o"]
+[ext_resource type="Script" path="res://Scripts/Components/InventoryComponent.gd" id="4_n82yo"]
+[ext_resource type="Script" path="res://Scripts/Components/DropInventoryComponent.gd" id="5_qhuk6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6t2j"]
+size = Vector3(2, 3.3, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sngk2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rs53t"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="Resource" id="Resource_8prjn"]
+script = ExtResource("4_03a3o")
+InventoryItem = ExtResource("3_3nklx")
+slotAmount = 1
+
+[node name="BreakableDropObject" type="Node3D" node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT")]
+script = ExtResource("1_km2uj")
+HEALTH_COMPONENT = NodePath("HealthComponent")
+DROPINV_COMPONENT = NodePath("DropInventoryComponent")
+
+[node name="EntityHitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_4nlu3")
+HEALTH_COMPONENT = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityHitboxComponent"]
+shape = SubResource("BoxShape3D_v6t2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_sngk2")
+skeleton = NodePath("../EntityHitboxComponent")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_rs53t")
+
+[node name="InventoryComponent" type="Node3D" parent="."]
+script = ExtResource("4_n82yo")
+Inventory = Array[ExtResource("4_03a3o")]([SubResource("Resource_8prjn")])
+
+[node name="DropInventoryComponent" type="Node3D" parent="." node_paths=PackedStringArray("INVENTORY_COMPONENT", "DropOrigin")]
+script = ExtResource("5_qhuk6")
+INVENTORY_COMPONENT = NodePath("../InventoryComponent")
+DropOrigin = NodePath("../EntityHitboxComponent")
+
+[node name="HealthbarHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="HealthComponent" type="Node3D" parent="." node_paths=PackedStringArray("HEALTHBAR_PARENT")]
+script = ExtResource("2_an8r2")
+MAX_HEALTH = 1.0
+HEALTHBAR_SCENE = ExtResource("3_uc37s")
+HEALTHBAR_PARENT = NodePath("../HealthbarHolder")

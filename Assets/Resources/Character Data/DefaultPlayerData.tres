@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CharacterDataResource" load_steps=2 format=3 uid="uid://ciwmdxxaj70jq"]
+
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/CharacterDataResource.gd" id="1_iqtfe"]
+
+[resource]
+script = ExtResource("1_iqtfe")
+baseDamage = 10

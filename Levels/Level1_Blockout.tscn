@@ -1,0 +1,344 @@
+[gd_scene load_steps=27 format=3 uid="uid://d2e3qfcl0jbyw"]
+
+[ext_resource type="PackedScene" uid="uid://dwx5xco1rkykb" path="res://Preset Scenes/Player/player.tscn" id="2_bniur"]
+[ext_resource type="PackedScene" uid="uid://bec5vqxm088e8" path="res://Preset Scenes/CSG/csg_level1.tscn" id="2_ye67v"]
+[ext_resource type="PackedScene" uid="uid://dc0kc8g27x3a" path="res://Preset Scenes/Interactables/Chest.tscn" id="3_2r1v7"]
+[ext_resource type="PackedScene" uid="uid://bde302mhub426" path="res://Preset Scenes/NPCs/DefaultEnemy.tscn" id="3_35xqc"]
+[ext_resource type="Resource" uid="uid://c5p83d1fy10ud" path="res://Assets/Resources/Inventory Items/Test_Item.tres" id="4_qchdt"]
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/InventorySlotResource.gd" id="5_pijfm"]
+[ext_resource type="Resource" uid="uid://b8e3mc6enlhik" path="res://Assets/Resources/Inventory Items/Apple.tres" id="6_3mtq8"]
+[ext_resource type="PackedScene" uid="uid://4ugwd1jjvx5q" path="res://Preset Scenes/Interactables/BreakableDropObject.tscn" id="10_p2h5r"]
+[ext_resource type="PackedScene" uid="uid://xxg4nmt8hmb0" path="res://Preset Scenes/Interactables/BreakableObjectPresets/breakable_small_bush.tscn" id="11_dcdfj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xr7b6"]
+
+[sub_resource type="Sky" id="Sky_mr660"]
+sky_material = SubResource("ProceduralSkyMaterial_xr7b6")
+
+[sub_resource type="Environment" id="Environment_u8yh7"]
+background_mode = 2
+background_color = Color(0.513726, 0.796078, 0.905882, 1)
+background_energy_multiplier = 1.5
+sky = SubResource("Sky_mr660")
+ambient_light_sky_contribution = 0.5
+tonemap_mode = 1
+ssil_enabled = true
+ssil_radius = 11.33
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.25
+glow_blend_mode = 1
+volumetric_fog_density = 0.0
+volumetric_fog_length = 46.1
+volumetric_fog_detail_spread = 0.5
+adjustment_enabled = true
+adjustment_brightness = 1.1
+adjustment_contrast = 1.05
+adjustment_saturation = 1.2
+
+[sub_resource type="Resource" id="Resource_aam3t"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("4_qchdt")
+slotAmount = 4
+
+[sub_resource type="Resource" id="Resource_ib1s8"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 5
+
+[sub_resource type="Resource" id="Resource_c5gqt"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 15
+
+[sub_resource type="Resource" id="Resource_1tw3q"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("4_qchdt")
+slotAmount = 7
+
+[sub_resource type="Resource" id="Resource_01cxs"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 25
+
+[sub_resource type="Resource" id="Resource_pyejc"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("4_qchdt")
+slotAmount = 5
+
+[sub_resource type="Resource" id="Resource_q22c0"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("4_qchdt")
+slotAmount = 15
+
+[sub_resource type="Resource" id="Resource_gh2ke"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 3
+
+[sub_resource type="Resource" id="Resource_tiagh"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 5
+
+[sub_resource type="Resource" id="Resource_ufl2w"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 1
+
+[sub_resource type="Resource" id="Resource_fefuq"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 6
+
+[sub_resource type="Resource" id="Resource_dso7v"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("4_qchdt")
+slotAmount = 2
+
+[sub_resource type="Resource" id="Resource_71jat"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("4_qchdt")
+slotAmount = 4
+
+[sub_resource type="Resource" id="Resource_15jwn"]
+script = ExtResource("5_pijfm")
+InventoryItem = ExtResource("6_3mtq8")
+slotAmount = 15
+
+[node name="Level1_Blockout" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.704319, 0.64396, 0.298749, 0.65821, 0.434778, 0.614596, 0.265886, 0.629511, -0.730083, 4.41461, 5.50774, 12.5934)
+shadow_enabled = true
+shadow_blur = 2.157
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u8yh7")
+
+[node name="Player" parent="." instance=ExtResource("2_bniur")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.133518, 1, -52.3223)
+
+[node name="Node3D" parent="." instance=ExtResource("2_ye67v")]
+
+[node name="Chest" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 66.2732, 8.90072, 79.6051)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_aam3t"), SubResource("Resource_ib1s8")])
+
+[node name="Chest2" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174, -5.1, 16)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_c5gqt")])
+
+[node name="Chest3" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 15.9674, 159)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_1tw3q")])
+
+[node name="Chest4" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 15.9674, 411)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_01cxs"), SubResource("Resource_pyejc"), SubResource("Resource_q22c0"), SubResource("Resource_gh2ke"), SubResource("Resource_tiagh")])
+
+[node name="Chest5" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3, 13.4388, 236)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_ufl2w")])
+
+[node name="Chest6" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(0.986243, 0, 0.1653, 0, 1, 0, -0.1653, 0, 0.986243, -222.596, 31.636, 490.399)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_fefuq")])
+
+[node name="Chest7" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.3, 19.226, 591)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_dso7v"), SubResource("Resource_71jat")])
+
+[node name="DefaultEnemy" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(-0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, -0.766044, -60.6648, 3, 79.8529)
+
+[node name="DefaultEnemy3" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102.035, 3, 39.1528)
+
+[node name="DefaultEnemy4" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.756, -0.060133, 68.2467)
+
+[node name="DefaultEnemy5" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.028, -1.8039, 80.4204)
+
+[node name="DefaultEnemy6" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180, -5, 20)
+
+[node name="DefaultEnemy7" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174, -5, 18)
+
+[node name="DefaultEnemy8" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -165, -5, 21)
+
+[node name="DefaultEnemy9" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174, -5, 26)
+
+[node name="DefaultEnemy10" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.603, -2, 129.503)
+
+[node name="DefaultEnemy11" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.508, -2, 116.18)
+
+[node name="DefaultEnemy12" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.344, 0, 140.835)
+
+[node name="DefaultEnemy13" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 16, 202)
+
+[node name="DefaultEnemy15" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 15, 179)
+
+[node name="DefaultEnemy14" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 15, 194)
+
+[node name="DefaultEnemy16" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 14, 231)
+
+[node name="DefaultEnemy17" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 15, 190)
+
+[node name="DefaultEnemy18" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 14, 215)
+
+[node name="DefaultEnemy19" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 15, 160)
+
+[node name="DefaultEnemy20" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112, 16, 168)
+
+[node name="DefaultEnemy21" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 16, 189)
+
+[node name="DefaultEnemy22" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, 16, 209)
+
+[node name="DefaultEnemy23" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 16, 356)
+
+[node name="DefaultEnemy24" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 16, 405)
+
+[node name="DefaultEnemy25" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 16, 420)
+
+[node name="DefaultEnemy26" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 16, 403)
+
+[node name="DefaultEnemy27" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153, 18, 345)
+
+[node name="DefaultEnemy28" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146, 23, 361)
+
+[node name="DefaultEnemy29" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157, 16, 455)
+
+[node name="DefaultEnemy30" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137, 16, 510)
+
+[node name="DefaultEnemy31" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.853, 17, 594.724)
+
+[node name="DefaultEnemy32" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6326, 18, 586.93)
+
+[node name="DefaultEnemy33" parent="." instance=ExtResource("3_35xqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2887, -3, 62.7619)
+
+[node name="BreakableDropObject" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4039, 7.16535, 62.6209)
+
+[node name="BreakableDropObject2" parent="." instance=ExtResource("11_dcdfj")]
+transform = Transform3D(0.612769, 0, 0, 0, 0.612769, 0, 0, 0, 0.612769, -75.5192, 7.14271, 38.5634)
+
+[node name="BreakableDropObject3" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.776466, -1.94114, 36.9414)
+
+[node name="BreakableDropObject4" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3319, -1.94114, 39.8724)
+
+[node name="BreakableDropObject5" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24496, -1.94114, 60.3269)
+
+[node name="BreakableDropObject7" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.396, -4.10716, 47.4543)
+
+[node name="BreakableDropObject6" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.151, -1.40321, 94.476)
+
+[node name="BreakableDropObject8" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8297, 16.8342, 168.225)
+
+[node name="BreakableDropObject9" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.903, 16.4762, 94.9976)
+
+[node name="BreakableDropObject10" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.903, 16.4762, 96.9976)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject9/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject9/DropInventoryComponent")
+
+[node name="BreakableDropObject11" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.903, 16.4762, 94.9976)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject9/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject9/DropInventoryComponent")
+
+[node name="BreakableDropObject12" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.903, 16.4762, 92.9976)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject9/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject9/DropInventoryComponent")
+
+[node name="BreakableDropObject13" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1919, 16.9757, 325.564)
+
+[node name="BreakableDropObject14" parent="." instance=ExtResource("11_dcdfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.79275, 15.9901, 314.178)
+
+[node name="BreakableDropObject15" parent="." instance=ExtResource("11_dcdfj")]
+transform = Transform3D(0.890972, 0, -0.454059, 0, 1, 0, 0.454059, 0, 0.890972, -64.1324, 15.9901, 320.242)
+
+[node name="BreakableDropObject16" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("11_dcdfj")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -63.8261, 15.9901, 321.385)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject15/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject15/DropInventoryComponent")
+
+[node name="BreakableDropObject17" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("11_dcdfj")]
+transform = Transform3D(0.650994, 0, -0.759083, 0, 1, 0, 0.759083, 0, 0.650994, -63.4505, 15.9901, 322.787)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject15/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject15/DropInventoryComponent")
+
+[node name="BreakableDropObject18" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("11_dcdfj")]
+transform = Transform3D(-0.479362, 0, -0.877617, 0, 1, 0, 0.877617, 0, -0.479362, -63.3185, 15.9901, 324.251)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject15/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject15/DropInventoryComponent")
+
+[node name="Chest9" parent="." instance=ExtResource("3_2r1v7")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -58.5456, 15.9901, 320.436)
+INVENTORY = Array[ExtResource("5_pijfm")]([SubResource("Resource_15jwn")])
+
+[node name="BreakableDropObject19" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.565, 16.9813, 333.874)
+
+[node name="BreakableDropObject20" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.842, 25.1714, 372.37)
+
+[node name="BreakableDropObject21" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("10_p2h5r")]
+transform = Transform3D(-0.112093, 0, -0.993698, 0, 1, 0, 0.993698, 0, -0.112093, -154.234, 25.1714, 372.56)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject20/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject20/DropInventoryComponent")
+
+[node name="BreakableDropObject22" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("10_p2h5r")]
+transform = Transform3D(-0.112093, 0, -0.993698, 0, 1, 0, 0.993698, 0, -0.112093, -153.555, 25.1714, 378.185)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject20/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject20/DropInventoryComponent")
+
+[node name="BreakableDropObject23" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.438, 24.4201, 467.973)
+
+[node name="BreakableDropObject24" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT", "DROPINV_COMPONENT") instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.098, 24.4201, 453.347)
+HEALTH_COMPONENT = NodePath("../BreakableDropObject23/HealthComponent")
+DROPINV_COMPONENT = NodePath("../BreakableDropObject23/DropInventoryComponent")
+
+[node name="BreakableDropObject25" parent="." instance=ExtResource("10_p2h5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.0942, -1.93358, 52.1909)

@@ -6,6 +6,7 @@ class_name InputHandlerComponent
 signal onMovementInput(InputDirection:Vector2)
 signal onJumpInput()
 signal onSprintInput()
+signal onInventoryInput()
 
 signal onSimpleAttack(dmgAmount:int)
 
@@ -32,6 +33,12 @@ func _input(event):
 		
 	if event.is_action_pressed("primary_attack"):
 		onSimpleAttack.emit(10)
+	
+	if event.is_action_pressed("toggle_inventory"):
+		onInventoryInput.emit()
+	
+	var inputDir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	onMovementInput.emit(inputDir)
 
 func _unhandled_input(event):
 	if IGNORE_INPUT:
@@ -39,10 +46,3 @@ func _unhandled_input(event):
 		
 	if event is InputEventMouseMotion:
 		onCameraInput.emit(Vector2(-event.relative.x, event.relative.y))
-
-func _process(delta):
-	if IGNORE_INPUT:
-		return
-		
-	var inputDir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	onMovementInput.emit(inputDir)

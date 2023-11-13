@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemResource" load_steps=3 format=3 uid="uid://b8e3mc6enlhik"]
+
+[ext_resource type="Texture2D" uid="uid://boxyaqex3h7sq" path="res://Assets/Textures/InventoryItemIcons/skulltroll.png" id="1_0qnfq"]
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/InventoryItemResource.gd" id="1_yloq6"]
+
+[resource]
+script = ExtResource("1_yloq6")
+ItemName = "Apple"
+Description = "An apple a day keeps the doctor away!"
+TextureIcon = ExtResource("1_0qnfq")
+stackable = true

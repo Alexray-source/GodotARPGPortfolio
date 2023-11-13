@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AttackAnimationResource" load_steps=2 format=3 uid="uid://dc1i8oif15roo"]
+
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/AttackAnimationResource.gd" id="1_rk1qy"]
+
+[resource]
+script = ExtResource("1_rk1qy")
+animations = Array[String](["EnemyAttackDefault"])

@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://xxg4nmt8hmb0"]
+
+[ext_resource type="PackedScene" uid="uid://4ugwd1jjvx5q" path="res://Preset Scenes/Interactables/BreakableDropObject.tscn" id="1_lgoct"]
+[ext_resource type="ArrayMesh" uid="uid://b2g78xi53vqup" path="res://Assets/Saved Meshes/SmallTreeBark.res" id="2_p6qc1"]
+[ext_resource type="Resource" uid="uid://c5p83d1fy10ud" path="res://Assets/Resources/Inventory Items/Test_Item.tres" id="3_niiq3"]
+[ext_resource type="Script" path="res://Scripts/ResourceScripts/InventorySlotResource.gd" id="4_p4mko"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hawx"]
+size = Vector3(3, 4, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eky00"]
+size = Vector3(17, 28, 17)
+
+[sub_resource type="Resource" id="Resource_03hhg"]
+script = ExtResource("4_p4mko")
+InventoryItem = ExtResource("3_niiq3")
+slotAmount = 1
+
+[node name="BreakableDropObject" instance=ExtResource("1_lgoct")]
+
+[node name="EntityHitboxComponent" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" parent="EntityHitboxComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+shape = SubResource("BoxShape3D_1hawx")
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.117, 0, 0, 0, 0.117, 0, 0, 0, 0.117, 0, 0, 0)
+mesh = ExtResource("2_p6qc1")
+
+[node name="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5299, 0)
+shape = SubResource("BoxShape3D_eky00")
+
+[node name="InventoryComponent" parent="." index="2"]
+Inventory = Array[ExtResource("4_p4mko")]([SubResource("Resource_03hhg")])
+
+[node name="HealthComponent" parent="." index="5"]
+MAX_HEALTH = 15.0
