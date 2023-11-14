@@ -1,18 +1,18 @@
 [gd_resource type="VisualShader" load_steps=22 format=3 uid="uid://cid7ip5pboxtg"]
 
 [ext_resource type="Texture2D" uid="uid://b16hd77fl5t0u" path="res://Assets/Textures/Materials/Rocks/Rock_Roughness_Seamless.png" id="1_kdky5"]
-[ext_resource type="Texture2D" uid="uid://84jtbem0p7mu" path="res://Assets/Textures/Materials/Grass/Grass001_2K_Color.jpg" id="1_t6st0"]
-[ext_resource type="Texture2D" uid="uid://pun1ptvey52" path="res://Assets/Textures/Materials/Grass/Grass001_2K_Roughness.jpg" id="2_3rwnh"]
+[ext_resource type="Texture2D" uid="uid://dvvljyvhx0cxq" path="res://Assets/Textures/Materials/Grass/GrassBaseVar1Desaturated.png" id="2_bi0bs"]
 [ext_resource type="Texture2D" uid="uid://ckkir5r67tsj4" path="res://Assets/Textures/Materials/Grass/Grass001_2K_NormalGL.jpg" id="3_37n36"]
 [ext_resource type="Texture2D" uid="uid://dyf3t6glkwhw4" path="res://Assets/Textures/Materials/Rocks/Rock_Normal_Seamless.png" id="4_f5je7"]
 [ext_resource type="Texture2D" uid="uid://boil1fko43e65" path="res://Assets/Textures/Materials/Rocks/Rock_Color_Seamless.png" id="4_ra32y"]
+[ext_resource type="Texture2D" uid="uid://cpq0lcakcjbm5" path="res://Assets/Textures/Materials/Grass/GrassBaseVar1.png" id="5_34603"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_iunjd"]
 texture = ExtResource("1_kdky5")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yl2jd"]
-texture = ExtResource("2_3rwnh")
+texture = ExtResource("2_bi0bs")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_pmbhh"]
@@ -46,7 +46,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, 0.5]
 op_type = 4
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_qke41"]
-texture = ExtResource("1_t6st0")
+texture = ExtResource("5_34603")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_irih7"]
@@ -151,7 +151,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1274.17, 317.314)
 modes/specular = 2
 nodes/fragment/0/position = Vector2(860, 260)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_5bexe")
@@ -159,11 +158,11 @@ nodes/fragment/2/position = Vector2(-760, 620)
 nodes/fragment/3/node = SubResource("VisualShaderNodeVectorDecompose_gaadi")
 nodes/fragment/3/position = Vector2(-420, 600)
 nodes/fragment/4/node = SubResource("VisualShaderNodeMix_7rwvp")
-nodes/fragment/4/position = Vector2(80, 220)
+nodes/fragment/4/position = Vector2(100, 0)
 nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_qke41")
-nodes/fragment/5/position = Vector2(-460, 20)
+nodes/fragment/5/position = Vector2(-420, -200)
 nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_irih7")
-nodes/fragment/6/position = Vector2(-460, 300)
+nodes/fragment/6/position = Vector2(-560, 20)
 nodes/fragment/7/node = SubResource("VisualShaderNodeInput_yrtkm")
 nodes/fragment/7/position = Vector2(-2140, 680)
 nodes/fragment/8/node = SubResource("VisualShaderNodeUVFunc_w76m7")
@@ -184,4 +183,4 @@ nodes/fragment/15/node = SubResource("VisualShaderNodeTexture_e5itx")
 nodes/fragment/15/position = Vector2(-500, 1720)
 nodes/fragment/16/node = SubResource("VisualShaderNodeVec2Parameter_j5d4m")
 nodes/fragment/16/position = Vector2(-2000, 800)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 2, 4, 2, 6, 0, 4, 1, 5, 0, 4, 0, 4, 0, 0, 0, 7, 0, 8, 0, 8, 0, 5, 0, 8, 0, 6, 0, 3, 2, 9, 2, 11, 0, 9, 0, 10, 0, 9, 1, 9, 0, 0, 3, 8, 0, 11, 0, 8, 0, 10, 0, 12, 0, 0, 4, 13, 0, 0, 9, 8, 0, 14, 0, 8, 0, 15, 0, 14, 0, 13, 0, 3, 2, 13, 2, 15, 0, 13, 1, 16, 0, 8, 1)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 2, 4, 2, 6, 0, 4, 1, 5, 0, 4, 0, 7, 0, 8, 0, 8, 0, 5, 0, 8, 0, 6, 0, 3, 2, 9, 2, 11, 0, 9, 0, 10, 0, 9, 1, 9, 0, 0, 3, 8, 0, 11, 0, 8, 0, 10, 0, 12, 0, 0, 4, 13, 0, 0, 9, 8, 0, 14, 0, 8, 0, 15, 0, 14, 0, 13, 0, 3, 2, 13, 2, 15, 0, 13, 1, 16, 0, 8, 1, 4, 0, 0, 0)

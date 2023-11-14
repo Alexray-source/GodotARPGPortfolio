@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk6dt1n87uubk"]
+[gd_scene load_steps=9 format=3 uid="uid://dk6dt1n87uubk"]
 
 [ext_resource type="PackedScene" uid="uid://bqwdpm6620r60" path="res://Preset Scenes/UI/Healthbar.tscn" id="1_m54ld"]
 [ext_resource type="Script" path="res://Scripts/Components/HUDComponent.gd" id="1_yiwya"]
@@ -11,7 +11,10 @@
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jvpcv"]
 gradient = SubResource("Gradient_ktuo0")
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("HEALTH_BAR", "INVENTORY_UI_CONTAINER", "INVENTORY_PANEL")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2lme"]
+bg_color = Color(0, 0, 0, 0.45098)
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("HEALTH_BAR", "INVENTORY_UI_CONTAINER", "INVENTORY_PANEL", "INTERACT_LABEL")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,16 +25,20 @@ script = ExtResource("1_yiwya")
 HEALTH_BAR = NodePath("CharacterInfo/Healthbar")
 INVENTORY_UI_CONTAINER = NodePath("InventoryContainer/MarginContainer/HBoxContainer/GridContainer")
 INVENTORY_PANEL = NodePath("InventoryContainer")
+INTERACT_LABEL = NodePath("InteractLabel")
 
 [node name="CharacterInfo" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -52.0
-offset_right = 253.0
-offset_bottom = -8.0
+offset_left = -124.0
+offset_top = -33.0
+offset_right = 124.0
+offset_bottom = -14.0
+grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Healthbar" parent="CharacterInfo" instance=ExtResource("1_m54ld")]
@@ -40,11 +47,11 @@ anchors_preset = -1
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.265
+anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 4.0
 offset_right = -5.0
-offset_bottom = 0.339999
+offset_bottom = -5.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -128,3 +135,23 @@ text = "Name"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
+
+[node name="InteractLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = 236.0
+offset_right = 105.5
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_r2lme")
+text = "[E] to interact"
+horizontal_alignment = 1

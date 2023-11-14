@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_b3dyu")
-baseDamage = 10
+baseDamage = 5

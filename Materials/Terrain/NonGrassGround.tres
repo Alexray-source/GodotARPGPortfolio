@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cktvph5ooufkq"]
+
+[ext_resource type="Texture2D" uid="uid://boil1fko43e65" path="res://Assets/Textures/Materials/Rocks/Rock_Color_Seamless.png" id="1_bgoq1"]
+[ext_resource type="Texture2D" uid="uid://dyf3t6glkwhw4" path="res://Assets/Textures/Materials/Rocks/Rock_Normal_Seamless.png" id="2_p5x8s"]
+
+[resource]
+cull_mode = 2
+albedo_texture = ExtResource("1_bgoq1")
+metallic_specular = 0.07
+normal_enabled = true
+normal_texture = ExtResource("2_p5x8s")
+uv1_scale = Vector3(20, 20, 20)

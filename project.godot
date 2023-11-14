@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalInputEvents="*res://Scripts/Global/GlobalInputEvents.gd"
+GlobalInputEvents="res://Scripts/Global/GlobalInputEvents.gd"
+GlobalSignals="*res://Scripts/Global/GlobalSignals.gd"
 
 [display]
 

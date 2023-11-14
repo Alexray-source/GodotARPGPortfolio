@@ -21,7 +21,7 @@ func _ready():
 	body_exited.connect(on_body_exit)
 
 func on_body_enter(body : Node3D):
-	if body.is_in_group("Targetable"):
+	if body.is_in_group("Player"):
 		nearby_bodies.append(body)
 
 func on_body_exit(body : Node3D):
@@ -43,6 +43,6 @@ func scan():
 			closest_target_distance = closest_dist
 	
 	if closest_target != prev_target:
-#		print("TARGET CHANGED!!")
+		print("TARGET CHANGED!!")
 		target_change.emit(closest_target)
 	return closest_target

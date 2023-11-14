@@ -1,17 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://21yhvegjoesi"]
+[gd_scene load_steps=3 format=3 uid="uid://21yhvegjoesi"]
 
 [ext_resource type="PackedScene" uid="uid://tbq5b88qbgxl" path="res://Assets/Blender Meshes/LandscapeLayer2.blend" id="1_4r2xf"]
 [ext_resource type="Material" uid="uid://ddkme3w5frulh" path="res://Materials/Terrain/TerrainBlendingSmall.tres" id="2_e2lpf"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ckkhb"]
-points = PackedVector3Array(-1.61523, -0.161021, -4.80072, 6.31445, -0.161021, -2.50927, 4.22904, 6.89796, -2.05452, -2.99287, 6.38958, 0.967869, 3.72623, 6.22712, 3.15658, -4.25956, -0.161021, 1.54228, 6.66666, 0.0158083, 2.24822, -2.30897, 6.37971, -3.04918, -0.140413, 6.39155, 3.65648, 3.54863, 6.38396, -3.38835, -4.43622, -0.161021, -2.1563, 4.5512, -0.161021, 4.36223, -0.734155, -0.161021, 4.89264, 5.41978, 6.23489, 0.297502, 4.02344, -0.161021, -4.44775, -2.84962, -0.161021, 3.65819, -0.304567, 6.38536, -3.72573, 0.0329465, 6.8813, 2.97206, -1.82713, 6.90387, -2.56397, -3.55404, 0.19193, -4.09573, 4.90459, 6.39626, -2.3936, 6.84332, 0.19193, -0.0413358, 4.70644, 6.70421, 1.4631, -1.96802, 6.2068, 2.63309, 1.90797, -0.161021, -4.80072, -2.97573, 6.37758, -1.54189, 0.85134, 0.19193, 4.89264, 5.96114, -0.161021, -3.21426, 5.22576, 6.21774, 1.47011, 1.70538, 6.38433, -3.72441, -2.30423, 6.87737, 0.796209, 3.04038, 6.87684, 2.46726)
 
 [node name="LandscapeLayer2" instance=ExtResource("1_4r2xf")]
 
 [node name="Vert" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_e2lpf")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-shape = SubResource("ConvexPolygonShape3D_ckkhb")

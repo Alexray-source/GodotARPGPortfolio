@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://xeebklmyxmbh"]
+
+[ext_resource type="PackedScene" uid="uid://bd2y6byct8j2c" path="res://Assets/Blender Meshes/CaveStraightEntrance.blend" id="1_n5pgv"]
+[ext_resource type="Material" uid="uid://cktvph5ooufkq" path="res://Materials/Terrain/NonGrassGround.tres" id="2_jidoc"]
+
+[node name="CaveStraightEntrance" instance=ExtResource("1_n5pgv")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_jidoc")

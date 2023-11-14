@@ -8,10 +8,21 @@ class_name HUDComponent
 @export var INVENTORY_UI_CONTAINER: InventoryUIContainer
 @export var INVENTORY_PANEL: Control
 
+@export var INTERACT_LABEL : Control
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	updateHealthInfo()
 	HEALTH_COMPONENT.on_damage.connect(updateHealthInfo)
+	
+	GlobalSignals.onEvent.connect(setInteractVisibility)
+
+func setInteractVisibility(eventName):
+	print(eventName)
+	if eventName == "ShowProxPrompt":
+		INTERACT_LABEL.visible = true
+	elif eventName == "HideProxPrompt":
+		INTERACT_LABEL.visible = false
 
 func toggleInventory():
 	INVENTORY_PANEL.visible = !INVENTORY_PANEL.visible
